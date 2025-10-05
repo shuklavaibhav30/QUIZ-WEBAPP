@@ -45,17 +45,20 @@ reattemptButton.addEventListener('click',()=>{
     username.value='';
     currentquesIndex=0;
     totalScore=0;
-    startQuiz();
+    questions=[];
 });
 
 
 async function startQuiz() {
+    option.innerHTML='';
+    currentquesIndex=0;
+    totalScore=0;
     const userName=username.value;
     if (userName.trim()===''){
         alert('Please enter your USERNAME!!!');
         return;
     }
-    userInfo.textContent= `Welcome,${userName}!`;
+    userInfo.textContent= `Welcome, ${userName}!`;
     loginpage.style.display='none';
     quizPage.style.display='block';
     
@@ -81,6 +84,7 @@ function showQuestion() {
         option.appendChild(li);
     });
     prevButton.disabled=(currentquesIndex===0);
+    nextButton.disabled=(currentquesIndex===questions.length-1);
 }
 
 function selectAnswer(selectedLi,correctAns)

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOW ABOUT CRICKET</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login">
+        <h2>WELCOME TO THE QUIZ!:</h2>
+        <label for="username">Enter USERNAME:</label>
+        <input type="text" id="username" aria-label="Enter USERNAME:">
+        <button id="start-button" aria-label="START">START</button>
+    </div>
+
+    <div id="quiz-page">
+        <nav>
+            <div id="user-info">WELCOME USER!</div>
+            <div id="timer">Time: 5:00</div>
+            <div>Correct:+4✅/Incorrect:-1❌</div>
+        </nav>
+        
+        <div id="question-status"></div>
+
+        <div id="question-container">
+            <h2>Questions here....</h2>
+            <ul id="option-container"></ul>
+        </div>
+
+        <div id="question-controls">
+            <button id="prev" aria-label="Go to previous Question">PREVIOUS QUESTION</button>
+            <button id="next" aria-label="Go to the next Question">NEXT QUESTION</button>
+            <button id="submit" aria-label="Submit Quiz">SUBMIT</button>
+        </div>
+    </div>
+
+    <div id="scorecard">
+        <h2>CONGRATULATIONS!You have completed the QUIZ</h2>
+        <p>YOUR FINAL SCORE -></p>
+        <h3 id="score">0</h3>
+        <button id="re-attempt" aria-label="Click to re-attempt the QUIZ">RE-ATTEMPT TEST</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
