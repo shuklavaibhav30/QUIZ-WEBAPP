@@ -3,6 +3,7 @@ const username=document.getElementById('username');
 const startButton=document.getElementById('start-button');
 
 const quizPage=document.getElementById('quiz-page');
+const timerDisp=document.getElementById('timer');
 const userInfo=document.getElementById('user-info');
 const questionText=document.querySelector('#question-container h2');
 const option=document.getElementById('option-container');
@@ -17,6 +18,8 @@ const reattemptButton=document.getElementById('re-attempt');
 let questions=[];
 let currentquesIndex=0;
 let totalScore=0;
+let timeLeft=300;
+let timeInterval;
 
 startButton.addEventListener('click',startQuiz);
 prevButton.addEventListener('click',()=>{
@@ -48,7 +51,6 @@ reattemptButton.addEventListener('click',()=>{
     questions=[];
 });
 
-
 async function startQuiz() {
     option.innerHTML='';
     currentquesIndex=0;
@@ -61,6 +63,19 @@ async function startQuiz() {
     userInfo.textContent= `Welcome, ${userName}!`;
     loginpage.style.display='none';
     quizPage.style.display='block';
+
+    timeLeft=300;
+    timeInterval=setInterval(()=>{
+        const min=Math.floor(timeLeft/60);
+        let sec=timeLeft%60;
+        sec=sec<10 ? '0'+sec:sec;
+        timerDisp.textContent= `Time:${min}:${sec}`;
+        timeLeft--;
+        if (timeLeft<0){
+        clearInterval(timeInterval);
+        showScore();
+        }
+    },1000);
     
     try{
         const response=await fetch('questions.json');
@@ -102,6 +117,7 @@ function selectAnswer(selectedLi,correctAns)
 }
 
 function showScore() {
+    clearInterval(timeInterval);
     quizPage.style.display='none';
     scorePage.style.display='block';
     scoreDisplay.textContent=totalScore;
