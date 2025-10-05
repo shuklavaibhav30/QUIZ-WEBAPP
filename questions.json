@@ -1,0 +1,122 @@
+[
+    {
+        "question": "In which year did India won its first WORLD CUP?",
+        "options": [
+            "1983",
+            "1987",
+            "2011",
+            "1984"
+        ],
+        "answer":"1983"
+    },
+
+    {
+        "question":"Who among the following is known as 'GOD OF CRICKET'?",
+        "options":[
+            "VIRAT KOHLI",
+            "MS DHONI",
+            "KAPIL DEV",
+            "SACHIN TENDULKAR"
+
+        ],
+        "answer":"SACHIN TENDULKAR"
+    },
+
+    {
+        "question":"From which country is cricket originally originated?",
+        "options":[
+            "AUSTRALIA",
+            "WEST-INDIES",
+            "ENGLAND",
+            "CANADA"
+
+
+        ],
+        "answer":"ENGLAND"
+    },
+
+    {
+        "question":"WHAT DO YOU MEAN BY 'DIAMOND DUCK' in cricket?",
+        "options":[
+            "when a batter gets out 2 times continuouslly by same bowler",
+            "when the batter gets out on the first legal ball faced by him",
+            "when the batter gets out after 3 minutes he enters the ground",
+            "when the batter gets out without facing any legal delivery"
+
+        ],
+        "answer":"when the batter gets out without facing any legal delivery"
+    },
+
+    {
+        "question":"Which format of Cricket is called the ULTIMATE FORM OF CRICKET",
+        "options":[
+            "TEST-CRICKET",
+            "T-20 CRICKET",
+            "ONE-DAY INTERNATIONALS",
+            "IPL"
+
+        ],
+        "answer":"TEST-CRICKET"
+    },
+
+    {
+        "question":"From the following which country is currently crowned as the most times World Cup Champions?",
+        "options":[
+            "INDIA",
+            "WEST-INDIES",
+            "AUSTRALIA",
+            "ENGLAND"
+
+        ],
+        "answer":"AUSTRALIA"
+    },
+
+    {
+        "question":"IPL SEASON 18 played in 2025 was won by which team?",
+        "options":[
+            "CHENNAI SUPER KINGS",
+            "MUMBAI INDIANS",
+            "ROYAL CHALLENGERS BANGLORE",
+            "PUNJAB KINGS"
+
+        ],
+        "answer":"ROYAL CHALLENGERS BANGLORE"
+    },
+
+    {
+        "question":"Which of the following pair of teams were got banned in IPL during 2016-2017?",
+        "options":[
+            "RCB & CSK",
+            "CSK & MI",
+            "MI & RR",
+            "RR & CSK"
+
+        ],
+        "answer":"RR & CSK"
+    },
+
+    {
+        "question":"Among the following current fast bowlers from the world haven't played a single IPL season?",
+        "options":[
+            "MUSTAFIZUR RAHIM",
+            "SHAHEEN SHAH AFRIDI",
+            "MITCHELL STARC",
+            "CHRIS WOAKES"
+
+        ],
+        "answer":"SHAHEEN SHAH AFRIDI"
+    },
+
+    {
+        "question":"Which of the following batters is the leading run scorer in the IPL LEADERBOARD?",
+        "options":[
+            "DAVID WARNER",
+            "VIRAT KOHLI",
+            "ROHIT SHARMA",
+            "SHIKHAR DHAWAN"
+
+        ],
+        "answer":"VIRAT KOHLI"
+    }
+
+]
