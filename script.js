@@ -20,6 +20,7 @@ let currentquesIndex=0;
 let totalScore=0;
 let timeLeft=300;
 let timeInterval;
+let userAns=[];
 
 startButton.addEventListener('click',startQuiz);
 prevButton.addEventListener('click',()=>{
@@ -57,7 +58,7 @@ async function startQuiz() {
     totalScore=0;
     const userName=username.value;
     if (userName.trim()===''){
-        alert('Please enter your USERNAME!!!');
+        alert('Enter username to start!');
         return;
     }
     userInfo.textContent= `Welcome, ${userName}!`;
@@ -80,6 +81,7 @@ async function startQuiz() {
     try{
         const response=await fetch('questions.json');
         questions=await response.json();
+        userAns=new Array(questions.length).fill(null);
         showQuestion();
     } 
     catch(error){
@@ -95,29 +97,62 @@ function showQuestion() {
     DispQues.options.forEach(OPTION => {
         const li=document.createElement('li');
         li.textContent=OPTION;
-        li.addEventListener('click',()=>selectAnswer(li,DispQues.answer));
+        li.addEventListener('click',()=>selectAnswer(li));
         option.appendChild(li);
     });
+    if (userAns[currentquesIndex]!==null){
+        const alloptions=option.querySelectorAll('li');
+        alloptions.forEach(li =>{
+            if(li.textContent===userAns[currentquesIndex]){
+                li.classList.add('selected');
+            }
+        })
+    }
     prevButton.disabled=(currentquesIndex===0);
-    nextButton.disabled=(currentquesIndex===questions.length-1);
+    // nextButton.disabled=(currentquesIndex===questions.length-1);
 }
 
-function selectAnswer(selectedLi,correctAns)
+function selectAnswer(selectedLi)
 {
+    // userAns[currentquesIndex]=selectedLi.textContent;
+    // const alloptions=option.querySelectorAll('li');
+    // alloptions.forEach(li=>li.style.pointerEvents='none');
+    // if (selectedLi.textContent===correctAns){
+    //     selectedLi.classList.add('correct');
+    //     totalScore+=4;
+    // }
+    // else{
+    //     selectedLi.classList.add('incorrect');
+    //     totalScore-=1;
+    // }
+    userAns[currentquesIndex]=selectedLi.textContent;
     const alloptions=option.querySelectorAll('li');
-    alloptions.forEach(li=>li.style.pointerEvents='none');
-    if (selectedLi.textContent===correctAns){
-        selectedLi.classList.add('correct');
-        totalScore+=4;
-    }
-    else{
-        selectedLi.classList.add('incorrect');
-        totalScore-=1;
-    }
+    alloptions.forEach(li=>{
+        li.classList.remove('selected');
+    });
+    selectedLi.classList.add('selected');
+
 }
 
 function showScore() {
     clearInterval(timeInterval);
+
+    let finalscore=0;
+    for(let i=0;i<questions.length;i++)
+    {
+        const correctAns=questions[i].answer;
+        const userAnswer=userAns[i];
+        if(userAnswer===null || userAnswer===undefined){
+            finalscore+=0;
+        }
+        else if(userAnswer===correctAns){
+            finalscore+=4;
+        }
+        else{
+            finalscore-=1;
+        }
+    }
+    totalScore=finalscore;
     quizPage.style.display='none';
     scorePage.style.display='block';
     scoreDisplay.textContent=totalScore;
