@@ -91,16 +91,12 @@ button:disabled {
     background-color: black;
     color: white;
 }
-
-.correct {
-    background-color: green !important;
-    color: white !important;
+#option-container li.selected{
+    background-color: lightcoral;
+    border: 2px solid black;
 }
 
-.incorrect {
-    background-color: red !important;
-    color: white !important;
-}
+
 
 /*for responsiveness*/
 @media(max-width:48rem) {
