@@ -8,8 +8,8 @@
 </head>
 <body>
     <div id="login">
-        <h2>WELCOME TO THE QUIZ!:</h2>
-        <label for="username">Enter USERNAME:</label>
+        <h2>🏏QUIZ PREMIER LEAGUE🧠</h2>
+        <label for="username">Enter Username:</label>
         <input type="text" id="username" aria-label="Enter USERNAME:">
         <button id="start-button" aria-label="START">START</button>
     </div>
@@ -17,11 +17,11 @@
     <div id="quiz-page">
         <nav>
             <div id="user-info">WELCOME USER!</div>
-            <div id="timer">Time: 5:00</div>
+            <div id="timer">⏰: 5:00</div>
             <div>Correct:+4✅/Incorrect:-1❌</div>
         </nav>
         
-        <div id="question-status"></div>
+        <div id="question-navigation"></div>
 
         <div id="question-container">
             <h2>Questions here....</h2>
@@ -29,14 +29,16 @@
         </div>
 
         <div id="question-controls">
-            <button id="prev" aria-label="Go to previous Question">PREVIOUS QUESTION</button>
-            <button id="next" aria-label="Go to the next Question">NEXT QUESTION</button>
+            <button id="prev" aria-label="Go to previous Question">⬅️</button>
+            <button id="mark-for-review" aria-label="Mark For Review">MARK FOR REVIEW</button>
+            <button id="clear" aria-label="Click to clear Selection">CLEAR ANSWER</button>
             <button id="submit" aria-label="Submit Quiz">SUBMIT</button>
+            <button id="next" aria-label="Go to the next Question">➡️</button>
         </div>
     </div>
 
     <div id="scorecard">
-        <h2>CONGRATULATIONS!You have completed the QUIZ</h2>
+        <h2>CONGRATULATIONS for completing QUIZ!👏</h2>
         <p>YOUR FINAL SCORE -></p>
         <h3 id="score">0</h3>
         <button id="re-attempt" aria-label="Click to re-attempt the QUIZ">RE-ATTEMPT TEST</button>

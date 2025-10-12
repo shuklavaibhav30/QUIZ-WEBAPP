@@ -10,6 +10,8 @@ const option=document.getElementById('option-container');
 const prevButton=document.getElementById('prev');
 const nextButton=document.getElementById('next');
 const submitButton=document.getElementById('submit');
+const markfrbutton=document.getElementById('mark-for-review');
+const clearbutton=document.getElementById('clear');
 
 const scorePage=document.getElementById('scorecard');
 const scoreDisplay=document.getElementById('score');
@@ -21,6 +23,7 @@ let totalScore=0;
 let timeLeft=300;
 let timeInterval;
 let userAns=[];
+let quesStates=[];
 
 startButton.addEventListener('click',startQuiz);
 prevButton.addEventListener('click',()=>{
@@ -43,6 +46,7 @@ nextButton.addEventListener('click',()=>{
 
 });
 submitButton.addEventListener('click',showScore);
+
 reattemptButton.addEventListener('click',()=>{
     scorePage.style.display='none';
     loginpage.style.display='block';
@@ -52,6 +56,21 @@ reattemptButton.addEventListener('click',()=>{
     questions=[];
 });
 
+markfrbutton.addEventListener('click',()=>{
+    quesStates[currentquesIndex]='markforreview';
+    renderNavigation();
+});
+
+clearbutton.addEventListener('click',()=>{
+   userAns[currentquesIndex]=null ;
+   quesStates[currentquesIndex]='unattempted';
+   const alloptions=option.querySelectorAll('li');
+   alloptions.forEach(li=>{
+    li.classList.remove('selected');
+   });
+
+   renderNavigation();   
+});
 async function startQuiz() {
     option.innerHTML='';
     currentquesIndex=0;
@@ -82,7 +101,9 @@ async function startQuiz() {
         const response=await fetch('questions.json');
         questions=await response.json();
         userAns=new Array(questions.length).fill(null);
+        quesStates=new Array(questions.length).fill('ques-not-visited');
         showQuestion();
+        renderNavigation();
     } 
     catch(error){
         console.error("Could not fetch the Questions:",error);
@@ -91,6 +112,10 @@ async function startQuiz() {
 }
 
 function showQuestion() {
+    if (quesStates[currentquesIndex]==='ques-not-visited'){
+        quesStates[currentquesIndex]='unattempted';
+        renderNavigation();
+    }
     option.innerHTML='';
     const DispQues=questions[currentquesIndex];
     questionText.textContent=DispQues.question;
@@ -112,6 +137,38 @@ function showQuestion() {
     // nextButton.disabled=(currentquesIndex===questions.length-1);
 }
 
+function renderNavigation(){
+    const navbar=document.getElementById('question-navigation');
+    navbar.innerHTML='';
+    quesStates.forEach((state,index)=>{
+        const btn=document.createElement('button');
+        btn.textContent=index+1;
+        btn.classList.add('nav-btn');
+
+        if(state==='attempted'){
+            btn.classList.add('nav-attempted');
+        }
+        else if(state==='markforreview'){
+            btn.classList.add('nav-markfr');
+        }
+        else if(state==='unattempted'){
+            btn.classList.add('nav-unattempted');
+        }
+        else{
+            btn.classList.add('nav-not-visited');
+        }
+        btn.addEventListener('click',()=>jumptoques(index));
+        navbar.appendChild(btn);
+
+    });
+}
+function jumptoques(index){
+    currentquesIndex=index;
+    showQuestion();
+}
+    
+
+
 function selectAnswer(selectedLi)
 {
     // userAns[currentquesIndex]=selectedLi.textContent;
@@ -126,6 +183,8 @@ function selectAnswer(selectedLi)
     //     totalScore-=1;
     // }
     userAns[currentquesIndex]=selectedLi.textContent;
+    quesStates[currentquesIndex]='attempted';
+    renderNavigation();
     const alloptions=option.querySelectorAll('li');
     alloptions.forEach(li=>{
         li.classList.remove('selected');
